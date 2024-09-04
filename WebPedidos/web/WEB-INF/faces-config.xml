@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+              xmlns:pm="https://primefaces.org/mobile">
+
+    <html xmlns="https://www.w3.org/1999/xhtml"
+	xmlns:ui="https://java.sun.com/jsf/facelets"
+	xmlns:h="https://java.sun.com/jsf/html"
+	xmlns:f="https://java.sun.com/jsf/core"
+	xmlns:p="https://primefaces.org/ui"
+	xmlns:pm="https://primefaces.org/mobile">
+        <f:view renderKitId="PRIMEFACES_MOBILE"/>
+    </html>
+    
+    <application>
+	<navigation-handler>
+		org.primefaces.mobile.application.MobileNavigationHandler
+	</navigation-handler>
+    </application>
+
+    
+      
+    <managed-bean>
+        <description>Devuelve el listado de productos</description>
+        <managed-bean-name>beanListaProductos</managed-bean-name>
+        <managed-bean-class>PrimeraConex.BeanListaProductos</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>beanAcceso</managed-bean-name>
+        <managed-bean-class>PrimeraConex.BeanAcceso</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>beanModel2</managed-bean-name>
+        <managed-bean-class>PrimeraConex.BeanModel2</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>beanDetalleOc</managed-bean-name>
+        <managed-bean-class>PrimeraConex.BeanDetalleOc</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+</faces-config>

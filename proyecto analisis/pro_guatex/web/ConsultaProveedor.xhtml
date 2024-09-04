@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Consulta e ingreso</title>
+        <!-- Compiled and minified CSS -->
+
+
+        <!-- Compiled and minified JavaScript -->
+
+        <script type="text/javascript" src="js/materialize.min.js"></script>           
+    </h:head>
+    <h:body  style=" background: #c5e0e8;">
+        <div id="top">
+            <ui:insert name="top">
+                <h:form id="prov">
+                    <p:growl id="growl" showDetail="true" life="4500" />
+
+                    <p:breadCrumb>
+                        <p:menuitem value="  " url="faces/menu.xhtml" />
+                        <p:menuitem value="   Solicitud de compra " url="faces/solicitud.xhtml" />
+                        <p:menuitem value="   Mant. Usuarios " url="faces/mantuser.xhtml" />
+                        <p:menuitem value=" Consulta proveedor" url="faces/ConsultaProveedor.xhtml"/>
+                        <p:menuitem value="Consulta Activo" url="faces/ConsultaActivo.xhtml"/>
+                        <p:menuitem value="Hoja responsabilidades " url="faces/hojarespon.xhtml"/>
+                        <p:menuitem value="Reporteria " url="faces/reporte.xhtml"/>
+                        <p:menuitem value="Cerrar sesion" url="faces/index.xhtml"/>
+                    </p:breadCrumb>
+
+                    <h:panelGrid style="width: 100%; margin-bottom: 20px" columns="1">
+
+                        <h1 style=" font-size: 30px; font-weight: bold; color: #5060BA; float: left; margin-left: 50px">Consulta e Ingreso Proveedor </h1>
+
+
+
+                    </h:panelGrid>
+
+
+
+                    <h:panelGrid columns="1" style=" width: 50%;">
+                        <h:panelGrid columns="2" style=" float:  left">
+
+                            <h:outputLabel value="Nombre del proveedor"></h:outputLabel>
+                            <p:inputText id="nombre" value="#{beanListaProveedor.nomprove}"></p:inputText>
+                            <h:outputLabel value="Telefono"></h:outputLabel>
+                            <p:inputText id="telefono" value="#{beanListaProveedor.telefono}"></p:inputText>
+                            <h:outputLabel value="Direccion"></h:outputLabel>
+                            <p:inputText id="direccion" value="#{beanListaProveedor.direccion}"></p:inputText>
+                            <h:outputLabel value="Representante"></h:outputLabel>
+                            <p:inputText id="representante" value="#{beanListaProveedor.representante}" ></p:inputText>
+                            <h:outputLabel value="Correo"></h:outputLabel>
+                            <p:inputText id="correo" value="#{beanListaProveedor.correo}"></p:inputText>
+                            <p:commandButton id="registro" value="Registrar proveedor"  actionListener="#{beanListaProveedor.insertadatos}"></p:commandButton>
+                            <p:spacer></p:spacer>
+                            <p:spacer></p:spacer>
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="2" style=" float:  left">
+                            <h:outputLabel value="Ingrese Proveedor"></h:outputLabel>
+                            <p:inputText id="caja1" value="#{beanListaProveedor.nombre}"></p:inputText>
+                            <p:commandButton id="consulta" value="Consultar proveedor" actionListener="#{beanListaProveedor.cargar()}" update=":prov:proveedor" ></p:commandButton>
+
+                            <p:spacer></p:spacer>
+                            <p:spacer></p:spacer>
+                        </h:panelGrid>
+
+                       
+
+                        <h:panelGrid columns="2" style=" float: left">
+
+                            <p:dataTable var="row" widgetVar="proveedor" emptyMessage="No se encontraron registros" style=" margin-left: 10px; margin-top: 5px" 
+                                         id="proveedor" value="#{beanListaProveedor.b}">
+
+                                <p:column headerText="Nombre"  style="width: 150px; text-align: center" >
+                                    <h:outputText value="#{row.nombre}"></h:outputText>
+                                </p:column>
+                                <p:column headerText="Telefono" style=" width: 150px; text-align: center">
+                                    <h:outputText value="#{row.telefono}"></h:outputText>
+                                </p:column>
+                                <p:column headerText="Direccion" style=" width: 150px; text-align: center">
+                                    <h:outputText value="#{row.direccion}"></h:outputText>
+                                </p:column>
+                                <p:column headerText="Representante" style=" width: 150px; text-align: center">
+                                    <h:outputText value="#{row.representante}"></h:outputText>
+                                </p:column>
+                                <p:column headerText="Correo" style=" width: 170px; text-align: center">
+                                    <h:outputText value="#{row.correo}"></h:outputText>
+                                </p:column>
+
+
+
+
+
+                            </p:dataTable>
+
+                        </h:panelGrid>
+                    </h:panelGrid>
+                </h:form>
+            </ui:insert>
+        </div>     
+
+
+    </h:body>
+</html>

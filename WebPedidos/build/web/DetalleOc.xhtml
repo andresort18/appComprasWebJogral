@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Detalle de Ordenes de Compra</title>
+       
+    </h:head>
+
+    <h:body>
+ 
+        <h:form>
+       
+    <p:dataTable var="row" widgetVar="ordenes" emptyMessage="No se encontraron registros" style="font-size: 9px; margin-left: 5px; margin-top: 5px" 
+                 id="ordenes" value="#{beanDetalleOc.detOc}">
+
+                    <p:column headerText="Código"  style="width: 35px; text-align: center" >
+                        #{row.productoid}
+                    </p:column>
+                    <p:column headerText="Unidad de Medida" style=" width: 35px; text-align: center">
+                        #{row.descUMedida}
+                    </p:column>
+                    <p:column headerText="Descripcion" style=" width: 150px; text-align: center">
+                        #{row.descripcion}
+                    </p:column>
+                    <p:column headerText="Cantidad" style=" width: 30px; text-align: center">
+                        #{row.cantidad}
+                    </p:column>
+                    <p:column headerText="Precio" style=" width: 30px; text-align: center">
+                        #{row.precio}
+                    </p:column>                    
+                    <p:column headerText="Descuento" style=" width: 30px; text-align: center">
+                        #{row.descuento}
+                    </p:column>                    
+
+                    <p:column headerText="Total" style=" width: 30px; text-align: center">
+                        #{row.totalConIva}
+                    </p:column>                    
+                                
+                </p:dataTable>     
+            <p:commandButton    value="Regresar Ordenes" style="float: left;"  actionListener="#{beanListaProductos.regresarOrden()}"></p:commandButton>
+       
+           
+        </h:form>
+    </h:body>
+
+</html>
+

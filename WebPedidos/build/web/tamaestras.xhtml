@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+        <title>Consultas de Producto</title>
+        <link href="CSS/estilosProductos.css" rel="stylesheet" type="text/css"/>
+        
+    </h:head>
+    <h:body>
+        <div class="cajaMainProductos">
+            <h:form class="formularioProd" id="Tproductos">
+                
+            <div class="cajaPanel">  
+              <h:panelGrid class="tablaMainProductos" columns="1" style=" float: left">
+                    <p:commandButton id ="Productos"  update=":Tproductos:productos" value="Listado de Productos" actionListener="#{beanListaProductos.cargar}"></p:commandButton>
+           
+                <p:outputLabel id="bdescrip" value="Medicamento a Buscar"></p:outputLabel>
+                <p:inputText id="Descripcion" value="#{beanListaProductos.resDescrip}"></p:inputText>
+
+                <p:dataTable var="row" widgetVar="productos" emptyMessage="No se encontraron registros" style=" margin-left: 10px; margin-top: 5px" 
+                             id="productos" value="#{beanListaProductos.listaProd}">
+
+                    <p:column headerText="Codigo"  style="width: 75px; text-align: center" >
+                        #{row.codigo}
+                    </p:column>
+                    <p:column headerText="Descripcion" style=" width: 150px; text-align: center">
+                        #{row.descrip}
+                    </p:column>
+                    <p:column headerText="Unidad de Medida" style=" width: 75px; text-align: center">
+                        #{row.umedida}
+                    </p:column>
+                    <p:column headerText="Consulta precios" style=" width: 75px; text-align: center">
+                        <p:commandButton icon="ui-icon-pencil" > 
+                            <f:setPropertyActionListener value="#{row}" target="#{beanListaProductos.selecProd}"> <!--Aqui va el nombre de las variables tipo objeto que declare en el bin que estan relacionadas a esta tabla -->
+                            </f:setPropertyActionListener>
+
+                        </p:commandButton>    
+                    </p:column>
+                    <p:column headerText="Consulta Existencias" style=" width: 75px; text-align: center">
+                        <p:commandButton icon="ui-icon-pencil" > 
+                            <f:setPropertyActionListener value="#{row}" target="#{beanListaProductos.selecExistpro}"> <!--Aqui va el nombre de las variables tipo objeto que declare en el bin que estan relacionadas a esta tabla -->
+                            </f:setPropertyActionListener>
+
+                        </p:commandButton>    
+                    </p:column>
+                    
+                    
+                    
+                    
+                    
+                </p:dataTable>                            
+
+                <p:commandButton  update=":Tproductos:tpedidos" value="Muestra Pedido" style="float: left;  " actionListener="#{beanListaProductos.cargarpedido}" ></p:commandButton> 
+
+                    <p:commandButton    value="Enviar Pedidos" style="float: left;"  actionListener="#{beanListaProductos.enviaped}"></p:commandButton> 
+                    <p:commandButton    value="Regresar Inicio" style="float: left;"  actionListener="#{beanListaProductos.regresarinicio}"></p:commandButton>  
+                   
+                     <!-- <h:commandLink action="/estadisticavtas" value="Estadistica de Ventas" /> -->
+                   
+                    <!--  Dialogo para Mostrar lo Pedido -->
+                <p:dialog  showHeader="false" resizable="false"  modal="true" 
+                           id="MuestraPed" widgetVar="MuestraPed" width="850" height="700" style="background: white; ">
+
+                    <h:panelGrid style=" width: 100%; margin-bottom: 20px; margin-top: 30px" columns="1">
+                        <p:commandButton value="Regresar" style="float: left;  " actionListener="#{beanListaProductos.regresarped}"></p:commandButton>
+                        <p:dataTable var="pedido" widgetVar="tpedidos" emptyMessage="No se encontraron registros" style=" margin-left: 10px; margin-top: 5px" 
+                                     id="tpedidos" value="#{beanListaProductos.listaPedido}">
+
+                            <p:column headerText="Codigo"  style="width: 25px; text-align: center" >
+                                <h:outputText value="#{pedido.productoid}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Descripcion" style=" width: 25px; text-align: center">
+                                <h:outputText value="#{pedido.descripcion}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Unidad de Medida" style=" width: 25px; text-align: center">
+                                <h:outputText value="#{pedido.umedidaid}"></h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Cantidad" style=" width: 25px; text-align: center">
+                                <h:outputText value="#{pedido.cantidad}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Precio" style=" width: 25px; text-align: center">
+                                <h:outputText value="#{pedido.precio}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Total" style=" width: 25px; text-align: center">
+                                <h:outputText value="#{pedido.total}"></h:outputText>
+                            </p:column>
+                        </p:dataTable>                            
+                    </h:panelGrid>
+                </p:dialog>    
+                    
+                <!-- Dialogo para Mostrar Precios del producto -->
+                <p:dialog  showHeader="false" resizable="false"  modal="true" 
+                           id="MuestraPrec" widgetVar="MuestraPrec" width="850" height="600" style="background: white; ">
+
+                    <h:panelGrid style=" width: 100%; margin-bottom: 20px; margin-top: 30px" columns="1">
+                        <p:commandButton value="Regresar" style="float: left;  " actionListener="#{beanListaProductos.regresarPrecios}"></p:commandButton>
+                        <p:dataTable var="precio" widgetVar="tprecios" emptyMessage="No se encontraron registros" style=" margin-left: 10px; margin-top: 5px" 
+                                     id="tPrecios" value="#{beanListaProductos.listaPrecios}">
+
+                            <p:column headerText="Codigo"  style="width: 125px; font-size: 12px; text-align: center" >
+                                <h:outputText value="#{precio.codigo}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Unidad de Medida" style=" width: 125px; font-size: 12px; text-align: center">
+                                <h:outputText value="#{precio.umedidaid}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Descripcion" style=" width: 125px; font-size: 12px; text-align: center">
+                                <h:outputText value="#{precio.descripcion}"></h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Precio" style=" width: 125px; font-size: 12px; text-align: center">
+                                <h:outputText value="#{precio.precio}"></h:outputText>
+                            </p:column>
+                        </p:dataTable>                            
+                    </h:panelGrid>
+                </p:dialog>                
+
+                <!-- Dialogo para Mostrar Existencias del producto -->
+                <p:dialog  showHeader="false" resizable="false"  modal="true" 
+                           id="MuestraExis" widgetVar="MuestraExis" width="1000" height="600" style="background: white; ">
+
+                    <h:panelGrid style=" width: 100%; margin-bottom: 20px; margin-top: 30px" columns="1">
+                        <p:commandButton value="Regresar" style="float: left;  " actionListener="#{beanListaProductos.regresarExistencias}"></p:commandButton>
+                        <p:dataTable var="existe" widgetVar="tprecios" emptyMessage="No se encontraron registros" style=" margin-left: 10px; margin-top: 5px" 
+                                     id="tExiste" value="#{beanListaProductos.listaExis}">
+
+                            <p:column headerText="Codigo"  style="width: 125px; font-size: 12px; text-align: center" >
+                                <h:outputText value="#{existe.codigo}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Bodega " style=" width: 125px; font-size: 12px; text-align: center">
+                                <h:outputText value="#{existe.bodegaId}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Unidad de Medida" style=" width: 125px; font-size: 12px; text-align: center">
+                                <h:outputText value="#{existe.descUmedidaId}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Entradas" style=" width: 125px; font-size: 12px; text-align: center">
+                                <h:outputText value="#{existe.totEntradas}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Salidas" style=" width: 125px; font-size: 12px; text-align: center">
+                                <h:outputText value="#{existe.totSalidas}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Reserva" style=" width: 125px; font-size: 12px; text-align: center">
+                                <h:outputText value="#{existe.reserva}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Saldo" style=" width: 125px; font-size: 12px; text-align: center">
+                                <h:outputText value="#{existe.saldoActual}"></h:outputText>
+                            </p:column>
+                        </p:dataTable>                            
+
+
+                    </h:panelGrid>
+
+
+
+
+                </p:dialog>                                
+                
+                
+                
+
+                <!--  Dialogo para cargar Cantidad -->
+               <p:dialog  showHeader="false" resizable="false"  modal="true" 
+                           id="guardacant" widgetVar="guardacant" width="850" height="700" style="background: white; ">
+
+                    <h:panelGrid style=" width: 200%; margin-bottom: 20px; margin-top: 30px" columns="2">
+
+                        <h:outputLabel style=" font-size: 18px; font-weight: bold; color: #5060BA; float: left;  " value="Codigo">
+
+                        </h:outputLabel>
+                        <h:inputText id="txtcod" value="#{beanListaProductos.qcodigo}" style="float: left; "></h:inputText>
+
+                        <h:outputLabel style=" font-size: 18px; font-weight: bold; color: #5060BA; float: left; " value="Descripcion">
+
+                        </h:outputLabel>
+                        <h:inputText id="txtdesc" value="#{beanListaProductos.qdescripcion}" style="float: left; "></h:inputText>
+
+                        <h:outputLabel style=" font-size: 18px; font-weight: bold; color: #5060BA; float: left;  " value="Medida">
+
+                        </h:outputLabel>
+                        <h:inputText id="txtumed" value="#{beanListaProductos.qmedida}" style="float: left; "></h:inputText>
+
+                        <h:outputLabel style=" font-size: 18px; font-weight: bold; color: #5060BA; float: left;  " value="Cantidadaop"></h:outputLabel>    
+                        <h:inputText id ="txtcantidad" style="float: left; " value="#{beanListaProductos.qcantidad}"></h:inputText>
+
+                        <p:commandButton value="Guardar" style="float: left;  " actionListener="#{beanListaProductos.grabaprod}" ></p:commandButton>
+
+                        <p:commandButton value="Regresar" style="float: left;  " actionListener="#{beanListaProductos.regresar}"></p:commandButton>
+
+                    </h:panelGrid>
+                </p:dialog>                                                         
+            </h:panelGrid>
+              
+          </div>  
+        </h:form>
+        </div>
+    </h:body>
+</html>

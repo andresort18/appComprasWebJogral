@@ -1,0 +1,195 @@
+
+
+
+CREATE TABLE activo (
+    act_activo        INT(10) NOT NULL ,
+    descripcion       VARCHAR(150),
+    num_serie         VARCHAR(50) NOT NULL,
+    codigo_barra      VARCHAR(150),
+    observaciones     VARCHAR(500),
+    fecha_ingreso     DATE NOT NULL,
+    factura           VARCHAR(80),
+    categoria_activo  VARCHAR(40),
+    estado            VARCHAR(3) NOT NULL,
+    fecha_estado      DATE NOT NULL,
+    tipo_activo       VARCHAR(3) NOT NULL
+);
+
+
+ALTER TABLE activo ADD CONSTRAINT activo_pk PRIMARY KEY ( act_activo );
+
+CREATE TABLE area_departamento (
+    are_area                       INT(10) NOT NULL,
+    descripcion                    VARCHAR(150) NOT NULL,
+    departamento_dep_departamento  INT(10) NOT NULL
+);
+
+
+
+ALTER TABLE area_departamento ADD CONSTRAINT area_departamento_pk PRIMARY KEY ( are_area,
+                                                                                departamento_dep_departamento );
+
+CREATE TABLE departamento (
+    dep_departamento  INT(10) NOT NULL,
+    descripcion       VARCHAR(150) NOT NULL
+);
+
+
+
+
+ALTER TABLE departamento ADD CONSTRAINT departamento_pk PRIMARY KEY ( dep_departamento );
+
+CREATE TABLE detalle_de_orden_de_asignacion (
+    orden_asignacion_ord_orden  INT(10) NOT NULL,
+    det_orden                   INT(3) NOT NULL,
+    cantidad                    INT(6) NOT NULL,
+    activo_act_activo           INT(10) NOT NULL
+);
+
+
+
+--  ERROR: PK name length exceeds maximum allowed length(30) 
+ALTER TABLE detalle_de_orden_de_asignacion ADD CONSTRAINT detalle_de_orden_de_asignacion_pk PRIMARY KEY ( det_orden,
+                                                                                                          orden_asignacion_ord_orden );
+
+CREATE TABLE empleado (
+    emp_empleado        VARCHAR(10) NOT NULL,
+    nombres             VARCHAR(30) NOT NULL,
+    apellidos           VARCHAR(30) NOT NULL,
+    extension           INT(10),
+    telefono            VARCHAR(20),
+    estado              VARCHAR(3),
+    fecha_contratacion  DATE,
+    fecha_baja          DATE
+);
+
+
+
+ALTER TABLE empleado ADD CONSTRAINT empleado_pk PRIMARY KEY ( emp_empleado );
+
+CREATE TABLE expediente_empleado (
+    exp_expediente                      INT(10) NOT NULL,
+    fecha_creacion                      DATE,
+    fecha_inicio                        DATE NOT NULL,
+    fecha_fin                           DATE,
+    puesto                              VARCHAR(50) NOT NULL,
+    estado                              VARCHAR(3) NOT NULL,
+    empleado_emp_empleado               VARCHAR(10) NOT NULL,
+    area_departamento_are_area          INT(10) NOT NULL, 
+--  ERROR: Column name length exceeds maximum allowed length(30) 
+    area_departamento_dep_departamento  INT(10) NOT NULL
+);
+
+
+
+ALTER TABLE expediente_empleado ADD CONSTRAINT expediente_empleado_pk PRIMARY KEY ( exp_expediente,
+                                                                                    empleado_emp_empleado );
+
+CREATE TABLE historial_activo (
+    hist_situacion     INT(10) NOT NULL,
+    fecha_situacion    DATE NOT NULL,
+    clasificacion      VARCHAR(3) NOT NULL,
+    descripcion        VARCHAR(150) NOT NULL,
+    antiguo_estado     VARCHAR(3) NOT NULL,
+    nuevo_estado       VARCHAR(3) NOT NULL,
+    activo_act_activo  INT(10) NOT NULL,
+    sintoma            VARCHAR(100),
+    diagnostico        VARCHAR(100),
+    solucion           VARCHAR(100)
+);
+
+
+
+ALTER TABLE historial_activo ADD CONSTRAINT historial_activo_pk PRIMARY KEY ( hist_situacion );
+
+CREATE TABLE ingreso_activo (
+    ing_activo                INTEGER NOT NULL,
+    fecha                     DATE,
+    cantidad                  INT,
+    precio_unitario           INT(2),
+    factura_prov              VARCHAR(80),
+    proveedor_prov_proveedor  INTEGER NOT NULL,
+    activo_act_activo         INT(10) NOT NULL
+);
+
+
+
+ALTER TABLE ingreso_activo ADD CONSTRAINT ingreso_activo_pk PRIMARY KEY ( ing_activo );
+
+CREATE TABLE orden_asignacion (
+    ord_orden                                  INT(10) NOT NULL,
+    estado                                     CHAR(3) NOT NULL,
+    fecha_creacion                             DATE NOT NULL,
+    fecha_asignacion                           DATE,
+    usuario_entrega                            VARCHAR(50), 
+--  ERROR: Column name length exceeds maximum allowed length(30) 
+    expediente_empleado_exp_expediente         INT(10) NOT NULL, 
+--  ERROR: Column name length exceeds maximum allowed length(30) 
+    expediente_empleado_empleado_emp_empleado  VARCHAR(10) NOT NULL
+);
+
+
+
+ALTER TABLE orden_asignacion ADD CONSTRAINT orden_asignacion_pk PRIMARY KEY ( ord_orden );
+
+CREATE TABLE proveedor (
+    prov_proveedor  INTEGER NOT NULL,
+    nombre          VARCHAR(40),
+    telefono        VARCHAR(20),
+    direccion       VARCHAR(50),
+    representante   VARCHAR(50),
+    correo          VARCHAR(40)
+);
+
+
+
+ALTER TABLE proveedor ADD CONSTRAINT proveedor_pk PRIMARY KEY ( prov_proveedor );
+
+--  ERROR: FK name length exceeds maximum allowed length(30) 
+ALTER TABLE area_departamento
+    ADD CONSTRAINT area_departamento_departamento_fk FOREIGN KEY ( departamento_dep_departamento )
+        REFERENCES departamento ( dep_departamento );
+
+--  ERROR: FK name length exceeds maximum allowed length(30) 
+ALTER TABLE detalle_de_orden_de_asignacion
+    ADD CONSTRAINT detalle_de_orden_de_asignacion_activo_fk FOREIGN KEY ( activo_act_activo )
+        REFERENCES activo ( act_activo );
+
+--  ERROR: FK name length exceeds maximum allowed length(30) 
+ALTER TABLE detalle_de_orden_de_asignacion
+    ADD CONSTRAINT detalle_de_orden_de_asignacion_orden_asignacion_fk FOREIGN KEY ( orden_asignacion_ord_orden )
+        REFERENCES orden_asignacion ( ord_orden );
+
+--  ERROR: FK name length exceeds maximum allowed length(30) 
+ALTER TABLE expediente_empleado
+    ADD CONSTRAINT expediente_empleado_area_departamento_fk FOREIGN KEY ( area_departamento_are_area,
+                                                                          area_departamento_dep_departamento )
+        REFERENCES area_departamento ( are_area,
+                                       departamento_dep_departamento );
+
+--  ERROR: FK name length exceeds maximum allowed length(30) 
+ALTER TABLE expediente_empleado
+    ADD CONSTRAINT expediente_empleado_empleado_fk FOREIGN KEY ( empleado_emp_empleado )
+        REFERENCES empleado ( emp_empleado );
+
+ALTER TABLE historial_activo
+    ADD CONSTRAINT historial_activo_activo_fk FOREIGN KEY ( activo_act_activo )
+        REFERENCES activo ( act_activo );
+
+ALTER TABLE ingreso_activo
+    ADD CONSTRAINT ingreso_activo_activo_fk FOREIGN KEY ( activo_act_activo )
+        REFERENCES activo ( act_activo );
+
+ALTER TABLE ingreso_activo
+    ADD CONSTRAINT ingreso_activo_proveedor_fk FOREIGN KEY ( proveedor_prov_proveedor )
+        REFERENCES proveedor ( prov_proveedor );
+
+--  ERROR: FK name length exceeds maximum allowed length(30) 
+ALTER TABLE orden_asignacion
+    ADD CONSTRAINT orden_asignacion_expediente_empleado_fk FOREIGN KEY ( expediente_empleado_exp_expediente,
+                                                                         expediente_empleado_empleado_emp_empleado )
+        REFERENCES expediente_empleado ( exp_expediente,
+                                         empleado_emp_empleado );
+
+
+

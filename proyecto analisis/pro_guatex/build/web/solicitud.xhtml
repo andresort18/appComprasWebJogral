@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>solicitud</title>
+        <!-- Compiled and minified CSS -->
+
+
+        <!-- Compiled and minified JavaScript -->
+
+        <script type="text/javascript" src="js/materialize.min.js"></script>         
+    </h:head>
+    <h:body style=" background: #c5e0e8;" >
+        <div id="top">
+            <ui:insert name="top">
+                <h:form id="soli">
+                    <p:breadCrumb >
+                        <p:menuitem value="  " url="faces/menu.xhtml" />
+                        <p:menuitem value="   Solicitud de compra " url="faces/solicitud.xhtml" />
+                        <p:menuitem value="   Mant. Usuarios " url="faces/mantuser.xhtml" />
+                        <p:menuitem value=" Consulta proveedor" url="faces/ConsultaProveedor.xhtml"/>
+                        <p:menuitem value="Consulta Activo" url="faces/ConsultaActivo.xhtml"/>
+                        <p:menuitem value="Hoja responsabilidades " url="faces/hojarespon.xhtml"/>
+                        <p:menuitem value="Reporteria " url="faces/reporte.xhtml"/>
+                        <p:menuitem value="Cerrar sesion" url="faces/index.xhtml" />
+                    </p:breadCrumb>
+
+                    <h:panelGrid style="width: 100%; margin-bottom: 20px" columns="1">
+
+                        <h1 style=" font-size: 30px; font-weight: bold; color: #5060BA; float: left; margin-left: 50px">Solicitud de compra </h1>
+
+
+
+                    </h:panelGrid>
+                    <h:panelGrid columns="1" style=" width: 50%;">
+                        <h:panelGrid columns="2" style=" float: left">
+                            <h:outputLabel value="Descripcion del activo"></h:outputLabel>
+                            <p:inputText id="descrip" value="#{beansolicitud.descripcion}"></p:inputText>
+                            <h:outputLabel value="Cantidad del activo "></h:outputLabel>
+                            <p:inputText id="cantida" value="#{beansolicitud.cantidad}"></p:inputText>
+                            <h:outputLabel  value="Empleado"></h:outputLabel>
+                            <p:inputText id="emple" value="#{beansolicitud.empleado}"></p:inputText>
+                            <h:outputLabel value="Fecha de creacion"></h:outputLabel>
+                            <p:calendar id="buttonfecha" value="#{beansolicitud.fechacreacion}" readonlyInput="true" widgetVar="tres" showOn="button" pattern="dd/MM/yyyy" locale="es"></p:calendar>
+                            <h:outputLabel value="Departamento"></h:outputLabel>
+                            <p:inputText id="depar" value="#{beansolicitud.departamento}"></p:inputText>
+                            <h:outputLabel value="Area departamento"></h:outputLabel>
+                            <p:inputText id="areadepart" value="#{beansolicitud.areadepatamento}"></p:inputText>
+                            <p:commandButton id="agreg" value="Guardar" actionListener="#{beansolicitud.agregarinfo}"></p:commandButton>
+                            <p:commandButton id="report" value="Generacion de solicitud" actionListener="#{beansolicitud.reportsolicitudpdf}"></p:commandButton>
+                        </h:panelGrid>
+                    </h:panelGrid>
+                </h:form>
+            </ui:insert>
+        </div>     
+
+
+    </h:body>
+</html>

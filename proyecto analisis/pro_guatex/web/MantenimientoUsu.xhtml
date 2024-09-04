@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>solicitud</title>
+        <!-- Compiled and minified CSS -->
+
+
+        <!-- Compiled and minified JavaScript -->
+
+        <script type="text/javascript" src="js/materialize.min.js"></script>         
+    </h:head>
+    <h:body  styleClass="cyan lighten-5">
+        <div id="top">
+            <ui:insert name="top">
+                <h:form id="piform">
+                    <p:breadCrumb>
+                       <p:menuitem value="  " url="faces/menu.xhtml" />
+                        <p:menuitem value="   Solicitud de compra " url="faces/solicitud.xhtml" />
+                        <p:menuitem value="   Mant. Usuarios " url="faces/mantuser.xhtml" />
+                        <p:menuitem value=" Consulta proveedor" url="faces/ConsultaProveedor.xhtml"/>
+                        <p:menuitem value="Consulta Activo" url="faces/ConsultaActivo.xhtml"/>
+                        <p:menuitem value="Hoja responsabilidades " url="faces/hojarespon.xhtml"/>
+                        <p:menuitem value="Reporteria " url="faces/reporte.xhtml"/>
+                        <p:menuitem value="Cerrar sesion" url="faces/index.xhtml"  />
+                     
+
+                    </p:breadCrumb>
+
+                    <h:panelGrid style="width: 100%; margin-bottom: 20px" columns="1">
+
+                        <h1 style=" font-size: 30px; font-weight: bold; color: #5060BA; float: left; margin-left: 50px">Mantenimiento Usuario </h1>
+                  
+          
+                        
+                    </h:panelGrid>
+                    <h:panelGrid columns="1" style=" width: 50%;">
+                        <h:panelGrid columns="2" style=" float: left">
+                            <h:outputLabel value="Nombre de Usuario"></h:outputLabel>
+                            <p:inputText id="caja1"></p:inputText>
+                            <h:outputLabel value="Descripcion"></h:outputLabel>
+                            <p:inputText id="caja2"></p:inputText>
+                            <h:outputLabel value="Correo"></h:outputLabel>
+                            <h:outputLabel value="Activo"></h:outputLabel>
+                           
+                           
+                            <p:inputText id="caja3"></p:inputText>
+                        </h:panelGrid>
+                    </h:panelGrid>
+                </h:form>
+            </ui:insert>
+        </div>     
+
+
+    </h:body>
+</html>

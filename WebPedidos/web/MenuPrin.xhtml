@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+	<script name="jquery/jquery.js" library="primefaces"></script>
+        <title>Menu</title>
+        <link href="CSS/estilosMenuPrincipal.css" rel="stylesheet" type="text/css"/>
+        <link href="CSS/reset.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+       <div class="menuPrincipal">
+        <h:form class="login">
+            <div class="menuInterno">
+                <h:graphicImage class="logoIndex" value="/images/negociospng.png"/>
+             <br/>
+            <p:menu class="menu" >
+                <p:submenu class="labelTitulo" label="Productos">
+                    <p:menuitem class="fuentes"  value="Productos" url="tamaestras.xhtml" />
+                    <p:menuitem class="fuentes"  value="Estadistica"   url="estadisticavtas.xhtml"  />
+                </p:submenu>
+            </p:menu>
+            <br/>
+            <p:menu class="menu" >
+                <p:submenu class="labelTitulo" label="Compras">
+                    <p:menuitem class="fuentes" value="Compras" url="autorizaoc.xhtml" />
+                    <p:menuitem class="fuentes" value="regresar a pantalla principal"  url="index.xhtml"/>
+                </p:submenu>
+            </p:menu>
+            </div>
+        </h:form>
+       </div>
+     <footer>
+        <p class="text-center"> ©Developed by JOGRAL 2024</p>
+    </footer>
+    </h:body>
+</html>

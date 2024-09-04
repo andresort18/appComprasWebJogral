@@ -1,0 +1,250 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+        <title>Ordenes de Compra</title>
+        <link href="CSS/menuEstilocss.css" rel="stylesheet" type="text/css"/>
+       
+    </h:head>
+    <h:body>
+        <div class="cajaMain">
+        <h:form class="formularioPrincipal" id="TordenesCom">
+            <h:panelGrid  class="panelPrincipal" columns="1" >
+                <p:commandButton class="botonListadoOrd" id ="Ordenes"  update=":TordenesCom:ordenes" value="Listado de Ordenes de Compra" actionListener="#{beanListaProductos.cargaroc}"></p:commandButton>
+                <!--<p:outputLabel id="bdescrip" value="Medicamento a Buscar"></p:outputLabel>-->
+                <!--<p:inputText id="Descripcion" value="#{beanListaProductos.resDescrip}"></p:inputText>-->
+
+                <div class="tablaMainCaja">
+                        <p:dataTable class="tablaMain" var="row" widgetVar="ordenes" emptyMessage="No se encontraron registros" 
+                             id="ordenes" value="#{beanListaProductos.listaOc}">
+
+                            <p:column class="cOrden" headerText="Orden" >
+                                #{row.codigo}
+                            </p:column>
+                            <p:column class="cProve" headerText="Proveedor">
+                                #{row.descriprov}
+                            </p:column>
+                            <p:column class="cFecha" headerText="Fecha">
+                                #{row.fecha}
+                            </p:column>
+                            <p:column class="cObse" headerText="Observaciones">
+                                #{row.observaciones}
+                            </p:column>
+                            <p:column class="cNom" headerText="Nombre">
+                                #{row.nombre}
+                            </p:column>                    
+                            <p:column class="cEntrega" headerText="Fecha Entrega">
+                                #{row.fechaEnt}
+                            </p:column>                    
+                            <p:column class="cAuto" headerText="Autorizado">
+                                #{row.autorizado}
+                            </p:column>                    
+                            <p:column class="cDene" headerText="Denegado">
+                                #{row.denegado}
+                            </p:column>
+                            <p:column class="cAnu" headerText="Anulado">
+                                #{row.anulado}
+                            </p:column>      
+                            <p:column class="cDupli" headerText="Duplicada">
+                                #{row.duplicada}
+                            </p:column>                    
+                            <p:column class="cFina" headerText="Finalizada" >
+                                #{row.finalizada}
+                            </p:column>                    
+                    
+                            <p:column class="cDet" headerText="Detalle">
+                                 <p:commandButton class="cIcon" icon="ui-icon-pencil" > 
+                                     <f:setPropertyActionListener value="#{row}" target="#{beanListaProductos.selectcompra}">  <!-- Aqui va el nombre de la lista -->
+                                     </f:setPropertyActionListener> 
+                                 </p:commandButton>    
+                            </p:column> 
+                                <!-- <p:column headerText="Consulta Existencias" style=" width: 75px; text-align: center"> -->
+                                <!-- <p:commandButton icon="ui-icon-pencil" >  -->
+                                <!-- <f:setPropertyActionListener value="#{row}" target="#{beanListaProductos.selecExistpro}">  --> <!--Aqui va el nombre de las variables tipo objeto que declare en el bin que estan relacionadas a esta tabla -->
+                                <!-- </f:setPropertyActionListener>  -->
+                                <!-- </p:commandButton>     -->
+                                <!-- </p:column>  -->
+                        </p:dataTable>                            
+                    </div>
+                
+                                    <!--  Dialogo para Mostrar Detalle de Ordes de compra -->
+
+                <p:dialog  responsive="true" styleClass="MyDialog" showHeader="false" resizable="false"  modal="true" showEffect="fade"
+                           id="MuestraDet" widgetVar="MuestraDet" hideEffect="fade">
+
+                   <div class="encaOrd">
+                    <h:panelGrid class="encabezado" columns="10">
+                        
+                         <h:outputLabel class="labelOrden"  value="Numero Orden:  " ></h:outputLabel>   
+                         <h:inputText  style="font-size: 12px;" id="txtordenco"  value="#{beanListaProductos.ordenco}" disabled="true"></h:inputText>
+                      
+                         <h:outputLabel class="labelOrden" value="Nit:  " ></h:outputLabel>   
+                         <h:inputText  style="font-size: 12px;" id="txtnitid"  value="#{beanListaProductos.nitid}" disabled="true"></h:inputText>
+                    
+                         <h:outputLabel class="labelOrden"  value="Descripcion Proveedor:  " ></h:outputLabel>   
+                         <h:inputText  style="font-size: 12px;" id="txtdescprove"  value="#{beanListaProductos.descProve}" disabled="true"></h:inputText>
+
+                         <h:outputLabel class="labelOrden" value="Fecha:  " ></h:outputLabel>   
+                         <h:inputText  style="font-size: 12px;" id="txtfecha"  value="#{beanListaProductos.fechaOc}" disabled="true"></h:inputText>
+
+                         <h:outputLabel  class="labelOrden" value="Observaciones :  " ></h:outputLabel>   
+                         <h:inputText  style="font-size: 12px;" id="txtobserva" value="#{beanListaProductos.observa}" disabled="true"></h:inputText>
+
+                         <h:outputLabel class="labelOrden" value="Comprador:  "  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtcomprador" value="#{beanListaProductos.comprador}" disabled="true"></h:inputText>
+
+                         <h:outputLabel  class="labelOrden" value="Marca:      "  ></h:outputLabel>   
+                         <h:inputText  style="font-size: 12px;" id="txtmarca"      value="#{beanListaProductos.marca}" disabled="true"></h:inputText>
+
+                         <h:outputLabel  class="labelOrden" value="Descripcion:"  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtDescrip"  value="#{beanListaProductos.descripcion}" disabled="true"></h:inputText>                         
+
+                         <h:outputLabel class="labelOrden" value="Sede:"  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtSede"  value="#{beanListaProductos.sede}" disabled="true"></h:inputText>                                                  
+
+                         <h:outputLabel class="labelOrden" value="Estatus:"  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtStatusId"  value="#{beanListaProductos.statusId}" disabled="true"></h:inputText>                                                  
+                         
+                         <h:outputLabel class="labelOrden" value="SubTotal:"  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtSubTotal"  value="#{beanListaProductos.subTotal}" disabled="true"></h:inputText>                         
+
+                         <h:outputLabel class="labelOrden" value="Descuento Fin de Costo:"  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtDescuentoFinCosto"  value="#{beanListaProductos.descuentoFinCosto}" disabled="true"></h:inputText>                                                  
+
+                         <h:outputLabel class="labelOrden" value="Descuento Fin No Costo:"  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtDescuentoFinNoCosto"  value="#{beanListaProductos.descuentoFinNoCosto}" disabled="true"></h:inputText>                                                  
+
+                         <h:outputLabel class="labelOrden" value="Descuento Saldos:"  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtDescuentoSaldos"  value="#{beanListaProductos.descuentoSaldos}" disabled="true"></h:inputText>                                                                           
+                         
+                         <h:outputLabel class="labelOrden" value="Monto Descuento Fin Costo:"  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtMontoDescFinCosto"  value="#{beanListaProductos.montoDescFinCosto}" disabled="true"></h:inputText>                                                                           
+
+                         <h:outputLabel class="labelOrden" value="Descuento Fin No Costo:"  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtMontoDescFinNoCosto"  value="#{beanListaProductos.montoDescFinNOCosto}" disabled="true"></h:inputText>                                                                           
+                         
+                         <h:outputLabel class="labelOrden" value="Monto Descuento :"  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtMontoDescSaldos"  value="#{beanListaProductos.montoDescSaldos}" disabled="true"></h:inputText>                                                                           
+
+                         <h:outputLabel class="labelOrden" value="Total Iva:"  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtTotalIva"  value="#{beanListaProductos.totalIva}" disabled="true"></h:inputText> 
+                         
+                         <h:outputLabel class="labelOrden" value="Total Bono:"  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtTotalBono"  value="#{beanListaProductos.totalBono}" disabled="true"></h:inputText>   
+                         
+                         <h:outputLabel class="labelOrden" value="Monto Bono:"  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtMontoBono"  value="#{beanListaProductos.montoBono}" disabled="true"></h:inputText>                                                                                                    
+
+                         <h:outputLabel class="labelOrden" value="Total Costo Sin Bono:"  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtTotalCostoSinBono"  value="#{beanListaProductos.totalCostoSinBono}" disabled="true"></h:inputText>                                                                                                                             
+                         
+                         <h:outputLabel class="labelOrden" value="Total Costo sin Iva Sin Bono:"  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtTotalCostoSinIvaSinBono"  value="#{beanListaProductos.totalCostoSinIvaSinBono}" disabled="true"></h:inputText>                                                                                                                             
+
+                         <h:outputLabel class="labelOrden" value="Total Sin Iva:"  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtTotalSinIva"  value="#{beanListaProductos.totalSinIva}" disabled="true"></h:inputText>                                                                                                    
+                         
+                         <h:outputLabel class="labelOrden" value="Total:"  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtTotal"  value="#{beanListaProductos.total}" disabled="true"></h:inputText>                                                                                                                             
+
+                         <h:outputLabel class="labelOrden" value="Total Factura:"  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtTotalFactura"  value="#{beanListaProductos.totalFactura}" disabled="true"></h:inputText>                                                                                                                             
+
+                         <h:outputLabel class="labelOrden" value="Total Faltantes:"  ></h:outputLabel>   
+                         <h:inputText style="font-size: 12px;" id="txtTotalFaltantes"  value="#{beanListaProductos.totalFaltantes}" disabled="true"></h:inputText>                                                                                                    
+                    </h:panelGrid>
+                       <p:commandButton  class="botonAut"  value="Autorizar Orden"   actionListener="#{beanListaProductos.autorzaorden}"></p:commandButton>
+                   </div>  
+                    
+                     
+               
+                    <h:panelGrid class="gridTabla" columns="1">
+                        <div class="detOrd">
+                        <p:dataTable var="row" widgetVar="tDetOrden" emptyMessage="No se encontraron registros" style=" margin-left: 10px; margin-top: 5px" 
+                                     id="tDetOrden" value="#{beanListaProductos.listaDet}">
+
+                            <p:column styleClass="titulosTabla" headerText="Codigo" >
+                                <h:outputText value="#{row.productoid}"></h:outputText>
+                            </p:column>
+                            <p:column styleClass="titulosTabla" headerText="Descripcion" style=" width: 180px; text-align: center">
+                                <h:outputText value="#{row.descripcion}"></h:outputText>
+                            </p:column>
+                            <p:column styleClass="titulosTabla" headerText="Unidad de Medida" style=" width: 45px; text-align: center">
+                                <h:outputText value="#{row.descUMedida}"></h:outputText>
+                            </p:column>
+
+                            <p:column styleClass="titulosTabla"  headerText="Afecto Iva" style=" width: 30px; text-align: center">
+                                <h:outputText value="#{row.afectoIva}"></h:outputText>
+                            </p:column>
+                            <p:column styleClass="titulosTabla"  headerText="Precio" style=" width: 30px; text-align: center">
+                                <h:outputText value="#{row.precio}"></h:outputText>
+                            </p:column>
+                            <p:column styleClass="titulosTabla"  headerText="Cantidad" style=" width: 40px; text-align: center">
+                                <h:outputText value="#{row.cantidad}"></h:outputText>
+                            </p:column>
+                            <p:column styleClass="titulosTabla"  headerText="Canti dad Bono" style=" width: 30px; text-align: center">
+                                <h:outputText value="#{row.cantidadBono}"></h:outputText>
+                            </p:column>
+                            <p:column styleClass="titulosTabla"  headerText="Des cuento 1" style=" width: 30px; text-align: center">
+                                <h:outputText value="#{row.descuento1}"></h:outputText>
+                            </p:column>
+                            <p:column styleClass="titulosTabla"  headerText="Des cuento  2" style=" width: 30px; text-align: center">
+                                <h:outputText value="#{row.descuento2}"></h:outputText>
+                            </p:column>
+                            <p:column styleClass="titulosTabla"  headerText="Des cuento  3" style=" width: 30px; text-align: center">
+                                <h:outputText value="#{row.descuento3}"></h:outputText>
+                            </p:column>
+                            <p:column styleClass="titulosTabla"  headerText="Cobra Iva Bon" style=" width: 30px; text-align: center">
+                                <h:outputText value="#{row.cobraIvaBon}"></h:outputText>
+                            </p:column>
+                            <p:column styleClass="titulosTabla"  headerText="A Costo Iva Bon" style=" width: 30px; text-align: center">
+                                <h:outputText value="#{row.acostoIvaBon}"></h:outputText>
+                            </p:column>                            
+                            <p:column styleClass="titulosTabla"  headerText="Bono Docu mento" style=" width: 30px; text-align: center">
+                                <h:outputText value="#{row.bonoDocumento}"></h:outputText>
+                            </p:column>                            
+                            <p:column styleClass="titulosTabla"  headerText="Bono Efec tivo" style=" width: 30px; text-align: center">
+                                <h:outputText value="#{row.bonoEfectivo}"></h:outputText>
+                            </p:column>                            
+                            <p:column styleClass="titulosTabla"  headerText="Costo con Boni" style=" width: 30px; text-align: center">
+                                <h:outputText value="#{row.costoConBon}"></h:outputText>
+                            </p:column>                            
+                            <p:column styleClass="titulosTabla"  headerText="Sub Total Desc1" style=" width: 30px; text-align: center">
+                                <h:outputText value="#{row.subTDesc1}"></h:outputText>
+                            </p:column>                            
+                            <p:column styleClass="titulosTabla"  headerText="Sub Total Desc2" style=" width: 30px; text-align: center">
+                                <h:outputText value="#{row.subTDesc2}"></h:outputText>
+                            </p:column>
+                            <p:column styleClass="titulosTabla"  headerText="Sub Total Desc3" style=" width: 30px; text-align: center">
+                                <h:outputText value="#{row.subTDesc3}"></h:outputText>
+                            </p:column>                            
+                            <p:column styleClass="titulosTabla"  headerText="Costo con iva Bon" style=" width: 30px; text-align: center">
+                                <h:outputText value="#{row.costoConIvaBon}"></h:outputText>
+                            </p:column>                            
+                            <p:column styleClass="titulosTabla"  headerText="Total Linea con Iva" style=" width: 30px; text-align: center">
+                                <h:outputText value="#{row.totalLineaConIva}"></h:outputText>
+                            </p:column>                            
+                            <p:column styleClass="titulosTabla"  headerText="Total Sin Iva" style=" width: 30px; text-align: center">
+                                <h:outputText value="#{row.totalSinIva}"></h:outputText>
+                            </p:column>                            
+                            <p:column styleClass="titulosTabla"  headerText="Total Linea Sin Iva" style=" width: 30px; text-align: center">
+                                <h:outputText value="#{row.totalLineaSinIva}"></h:outputText>
+                            </p:column>                            
+                        </p:dataTable>                            
+                            <br></br>       
+                            <p:commandButton value="Regresar" style="float: left;  " actionListener="#{beanListaProductos.regresarOrden}"></p:commandButton>
+                       </div>     
+                    </h:panelGrid>
+                </p:dialog>                
+                    <!-- finaliza dialogo que muestra detalle de ordenes de compra -->
+                <p:commandButton  class="botonRegresar"   value="Regresar Inicio"  actionListener="#{beanListaProductos.regresarinicio}"></p:commandButton>
+            </h:panelGrid>
+        </h:form>
+        </div>
+    </h:body>
+</html>

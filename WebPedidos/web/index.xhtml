@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+        <title>Login</title>
+        <link href="CSS/estilologin.css" rel="stylesheet" type="text/css"/>
+        <link href="CSS/reset.css" rel="stylesheet" type="text/css"/>
+        <!--  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <h:outputStylesheet library="css" name="sweetalert.css"/>
+        <h:outputScript library="js" name="sweetalert.min.js"/> -->
+    </h:head>
+    <h:body>
+    
+      <div class="formulario">
+        <h:form class="login">
+            <center>
+               <div class="grupoform">  
+                <div class="form-group">    
+                    <h:panelGroup>
+                        <!-- <h:outputText value="Jogral"/>-->
+                        <h:graphicImage class="logoIndex" value="/images/negociospng.png"/>
+                        <!--   <img class="responsive-img" style="max-width: 1150px;" src="/images/Negocios F.jpg"/>-->               
+                    </h:panelGroup>   
+                </div>  
+                     <br/> 
+                <div class="form-group">
+                    <h:outputLabel class="titulos" for="username" value="Usuario" ></h:outputLabel> 
+                    <i class="pi-arrows-h"></i>
+                    <p:inputText  class="camposDatos" placeholder="User" id="username" required="true" requiredMessage="Usuario requerido" value="#{beanAcceso.usuario}"></p:inputText>
+                </div> 
+                <div class="form-group">  
+                    <br/> 
+                </div>   
+
+                <div class="form-group">    
+                    <h:outputLabel class="titulos" for="password" value="Contraseña"></h:outputLabel>
+                    <br/> 
+                    <p:password class="camposDatos" placeholder="Password" id="password" required="true" requiredMessage="Contrasena requerida" value="#{beanAcceso.password}"></p:password>           
+                </div> 
+                <div class="form-group">  
+                    <br/> 
+                </div>     
+                <div class="form-group">    
+                    <p:selectOneMenu class="camposDatosOpciones" id = "Empresa" value="#{beanAcceso.componentes}">
+                        <f:selectItem itemValue="1" itemLabel="Trebol"/>
+                        <f:selectItem itemValue="2" itemLabel="Villa Nueva"/>
+                        <f:selectItem itemValue="3" itemLabel="Maquina Local"/>
+                    </p:selectOneMenu>  
+                </div>   
+                <div class="form-group">  
+                    <br/> 
+                </div>   
+                <div class="form-group"> 
+                    <p:commandButton id="Acceso" actionListener="#{beanAcceso.validarUsuario}" value="Accesar"></p:commandButton>      
+
+                </div>   
+               </div>    
+            </center>
+            
+
+        </h:form>
+      </div> 
+    </h:body>
+</html>
+

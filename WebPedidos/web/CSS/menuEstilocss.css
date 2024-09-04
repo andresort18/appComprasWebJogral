@@ -1,0 +1,192 @@
+html{
+    background: radial-gradient(#3087FF,#10DFE5);
+}
+
+body,html{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;     
+}
+
+.panelPrincipal{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: azure;
+    padding: 8px 5px 8px 5px;
+    border: 1px solid #E1E1E2;
+    border-radius: 5px;
+    box-shadow: 2px 2px 15px 8px rgba(0, 0, 0, 0.4);
+}
+
+.botonListadoOrd{
+    background-color: #3087FF;
+    height: 30px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.tablaMain{
+    display: flex;
+    font-size: 12px;
+    width: 1450px;
+}
+
+.cOrden{
+   width: 60px;
+   text-align: center;
+}
+
+.cProve{
+    width: 130px; 
+    text-align: center;
+}
+
+.cFecha{
+    width: 85px; 
+    text-align: center;
+}
+
+.cObse{
+    width: 150px;
+    text-align: center;
+}
+
+.cNom{
+    width: 100px; 
+    text-align: center;
+}
+
+.cEntrega{
+     width: 85px; 
+     text-align: center;
+}
+
+.cAuto{
+    width: 35px; 
+    text-align: center;
+}
+
+.cDene{
+    width: 30px; 
+    text-align: center;
+}
+
+.cAnu{
+   width: 30px; 
+   text-align: center;  
+}
+
+.cDupli{
+    width: 30px; 
+    text-align: center;
+}
+
+.cFina{
+    width: 30px; 
+    text-align: center;
+}
+
+.cDet{
+    width: 20px; 
+    text-align: center;
+}
+
+.MyDialog.ui-dialog .ui-dialog-content {
+   padding: 10px !important;
+   width: 1400px !important;
+   height: 650px !important;
+   display: flex !important;
+   justify-content: space-between !important;
+   align-items: flex-start !important;
+   flex-direction: column !important;
+   
+}
+
+.encaOrd{
+  border: 1px solid #E1E1E2;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: azure;
+  height: 255px;
+}
+
+
+.encabezado{
+    margin: 0;
+    height: 265px;
+}
+
+
+.labelOrden{
+    font-size: 14px;
+}
+
+.gridTabla{
+    width: 100%; 
+    margin-bottom: 20px; 
+    margin-top: 30px;
+}
+
+.titulosTabla{
+    font-size:13px;  
+    width: 33px; 
+    text-align: center;
+}
+
+.botonRegresar{
+    height: 25px;
+    font-size: 13px;
+}
+
+/* Responsive para Telefonos */
+@media (min-width: 320px) and (max-width: 480px){ 
+    .tablaMain{
+        width: 350px;    
+    }
+    
+    .MyDialog.ui-dialog .ui-dialog-content{
+         width: 28% !important;
+    }
+    
+    .encaOrd{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }   
+}
+
+/* Responsive para Tablets */
+@media only screen and (min-width: 768px) and (max-width: 1366px){
+    .tablaMain{
+        width: 740px;
+    }
+    
+    .MyDialog.ui-dialog .ui-dialog-content{
+        width: 60% !important;
+    }   
+    .encaOrd{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+}
+
+
+/* Responsive para Tablets horizontales */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: horizontal){
+    .tablaMain{
+        width: 650px;
+        height: 200px;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .MyDialog.ui-dialog .ui-dialog-content{
+        width: 90% !important;
+    }   
+}

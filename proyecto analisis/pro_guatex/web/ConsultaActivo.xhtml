@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Consulta e ingreso</title>
+        <!-- Compiled and minified CSS -->
+
+
+        <!-- Compiled and minified JavaScript -->
+
+        <script type="text/javascript" src="js/materialize.min.js"></script>           
+    </h:head>
+    <h:body  style=" background: #c5e0e8;">
+        <div id="top">
+            <ui:insert name="top">
+                <h:form id="act">
+                    <p:growl id="growl" showDetail="true" life="4500" />
+
+                    <p:breadCrumb >
+                        <p:menuitem value="  " url="faces/menu.xhtml" />
+                        <p:menuitem value="   Solicitud de compra " url="faces/solicitud.xhtml" />
+                        <p:menuitem value="   Mant. Usuarios " url="faces/mantuser.xhtml" />
+                        <p:menuitem value=" Consulta proveedor" url="faces/ConsultaProveedor.xhtml"/>
+                        <p:menuitem value="Consulta Activo" url="faces/ConsultaActivo.xhtml"/>
+                        <p:menuitem value="Hoja responsabilidades " url="faces/hojarespon.xhtml"/>
+                        <p:menuitem value="Reporteria " url="faces/reporte.xhtml"/>
+                        <p:menuitem value="Cerrar sesion" url="faces/index.xhtml"/>
+
+                    </p:breadCrumb>
+
+                    <h:panelGrid style="width: 100%; margin-bottom: 20px" columns="1">
+
+                        <h1 style=" font-size: 30px; font-weight: bold; color: #5060BA; float: left; margin-left: 50px">Consulta e Ingreso Activo </h1>
+
+
+
+                    </h:panelGrid>
+
+
+
+                    <h:panelGrid columns="1" style=" width: 50%;">
+                        <h:panelGrid columns="2" style=" float:  left">
+
+                            <h:outputLabel value="Descripcion"></h:outputLabel>
+                            <p:inputText id="descripcion" value="#{beanListaActivo.descripcion}"></p:inputText>
+                            <h:outputLabel value="Numero De Serie"></h:outputLabel>
+                            <p:inputText id="num_serie" value="#{beanListaActivo.num_serie}"></p:inputText>
+                            <h:outputLabel value="Codigo De Barra"></h:outputLabel>
+                            <p:inputText id="codigo_barra" value="#{beanListaActivo.codigo_barra}"></p:inputText>
+                            <h:outputLabel value="Observaciones"></h:outputLabel>
+                            <p:inputText id="Observaciones" value="#{beanListaActivo.observaciones}"></p:inputText>
+                            <h:outputLabel value="Fecha Ingreso"></h:outputLabel>
+                            <p:inputText id="fecha_ingreso" value="#{beanListaActivo.fecha_ingreso}" ></p:inputText>
+                            <h:outputLabel value="Factura"></h:outputLabel>
+                            <p:inputText id="factura" value="#{beanListaActivo.factura}"></p:inputText>
+                            <h:outputLabel value="Categoria Activo"></h:outputLabel>
+                            <p:inputText id="categoria_activo" value="#{beanListaActivo.categoria_activo}"></p:inputText>
+                            <h:outputLabel value="Estado"></h:outputLabel>
+                            <p:inputText id="Estado" value="#{beanListaActivo.estado}"></p:inputText>
+                            <h:outputLabel value="Fecha Estado"></h:outputLabel>
+                            <p:inputText id="fecha_estado" value="#{beanListaActivo.fecha_estado}"></p:inputText>
+                            <h:outputLabel value="Tipo Activo"></h:outputLabel>
+                            <p:inputText id="tipo_activo" value="#{beanListaActivo.tipo_activo}"></p:inputText>
+
+                            <p:commandButton id="registro" value="Registrar Activo"  actionListener="#{beanListaActivo.insertadatos()}"></p:commandButton>
+                            <p:spacer></p:spacer>
+                            <p:spacer></p:spacer>
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="2" style=" float:  left">
+                            <h:outputLabel value="Ingrese El Numero De Serie"></h:outputLabel>
+                            <p:inputText id="caja5" value="#{beanListaActivo.serie}"></p:inputText>
+                            <p:commandButton id="consulta" value="Consultar Activo" actionListener="#{beanListaActivo.cargar()}" update=":act:activo" ></p:commandButton>
+
+                            <p:spacer></p:spacer>
+                            <p:spacer></p:spacer>
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="2" style=" float: left">
+
+                            <p:dataTable var="row" emptyMessage="No se encontraron registros" style=" margin-left: 10px; margin-top: 5px" 
+                                         id="activo" value="#{beanListaActivo.a}" >
+
+                                <p:column headerText="Descripcion"  style="width: 170px; text-align: center" >
+                                    <h:outputText value="#{row.descripcion}"></h:outputText>
+                                </p:column>
+                                <p:column headerText="Numero Serie" style=" width: 150px; text-align: center">
+                                    <h:outputText value="#{row.num_serie}"></h:outputText>
+                                </p:column>
+                                <p:column headerText="Codigo Barra" style=" width: 150px; text-align: center">
+                                    <h:outputText value="#{row.codigo_barra}"></h:outputText>
+                                </p:column>
+                                <p:column headerText="Observaciones" style=" width: 150px; text-align: center">
+                                    <h:outputText value="#{row.observaciones}"></h:outputText>
+                                </p:column>
+                                <p:column headerText="Fecha Ingreso" style=" width: 150px; text-align: center">
+                                    <h:outputText value="#{row.fecha_ingreso}"></h:outputText>
+                                </p:column>
+                                <p:column headerText="Factura" style=" width: 150px; text-align: center">
+                                    <h:outputText value="#{row.factura}"></h:outputText>
+                                </p:column>
+                                <p:column headerText="Categoria Activo" style=" width: 150px; text-align: center">
+                                    <h:outputText value="#{row.categoria_activo}"></h:outputText>
+                                </p:column>
+                                <p:column headerText="Estado" style=" width: 150px; text-align: center">
+                                    <h:outputText value="#{row.estado}"></h:outputText>
+                                </p:column>
+                                <p:column headerText="Fecha Estado" style=" width: 150px; text-align: center">
+                                    <h:outputText value="#{row.fecha_estado}"></h:outputText>
+                                </p:column>
+                                <p:column headerText="Tipo Activo" style=" width: 150px; text-align: center">
+                                    <h:outputText value="#{row.tipo_activo}"></h:outputText>
+                                </p:column>
+
+
+
+
+
+                            </p:dataTable>
+
+
+
+                        </h:panelGrid>
+
+                    </h:panelGrid>
+                </h:form>
+            </ui:insert>
+        </div>     
+
+
+    </h:body>
+</html>

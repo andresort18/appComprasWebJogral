@@ -1,0 +1,50 @@
+   private datosusuario d1;
+    private String idusr;
+    private String codusr;
+    private String stsusr;
+
+    public String getIdusr() {
+        return idusr;
+    }
+
+    public void setIdusr(String idusr) {
+        this.idusr = idusr;
+    }
+
+    public String getCodusr() {
+        return codusr;
+    }
+
+    public void setCodusr(String codusr) {
+        this.codusr = codusr;
+    }
+
+    public String getStsusr() {
+        return stsusr;
+    }
+
+    public void setStsusr(String stsusr) {
+        this.stsusr = stsusr;
+    }
+    
+    
+    public datosusuario getD1() {
+        return d1;
+    }
+
+    public void setD1(datosusuario d1) {
+        this.d1 = d1;
+        if (d1!=null) {
+            idusr=d1.getIdusuario();
+            codusr=d1.getCoduser();
+            stsusr=d1.getEstado();
+            
+            RequestContext contextoRequest = RequestContext.getCurrentInstance();
+            contextoRequest.update("users:txtidusr");
+            contextoRequest.update("users:txtcodusr");
+            contextoRequest.update("users:txtestado");
+            contextoRequest.execute("PF('updateuser').show()");
+        }
+    }
+    
+    

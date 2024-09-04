@@ -1,0 +1,9 @@
+  <managed-bean>
+        <managed-bean-name>beanLogin</managed-bean-name>
+        <managed-bean-class>com.guatex.callcenter.login.BeanLogin</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+
+ FacesContext context = FacesContext.getCurrentInstance();
+                    BeanLogin objLogin = (BeanLogin) context.getExternalContext().getSessionMap().get("beanLogin");

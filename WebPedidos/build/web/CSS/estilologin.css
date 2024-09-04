@@ -1,0 +1,81 @@
+@import url('https://fonts.cdnfonts.com/css/nexa-bold');
+html{
+    background: radial-gradient(#3087FF,#10DFE5);
+}
+
+body,html{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    /*background-color: #F0F0F0;*/  
+}
+
+.login{
+  border: 1px solid #E1E1E2;
+  border-radius: 5px;
+  box-shadow: 2px 2px 15px 8px rgba(0, 0, 0, 0.4);
+  padding: 17px;
+  width: 400px;
+  height: 450px;
+  background-color: azure;
+}
+
+.grupoform{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 450px;
+}
+
+
+.logoIndex{
+    width: 200px; 
+    height:200px; 
+}
+
+.titulos{
+    font-size: 22px;
+    color: #063254;
+    font-family: 'Nexa', sans-serif;
+    font-weight: bold;
+}
+
+.camposDatos{
+    width: 320px;
+    height: 35px;
+}
+
+
+
+
+@media only screen and (min-width: 768px) and (max-width: 1366px){
+    .login{
+        border: 1px solid #E1E1E2;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 400px;
+        height: 420px;
+    }
+    
+    .grupoform{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+}
+
+@media (max-width: 435px){
+    .login{
+        width: 280px;
+    }
+    
+    .camposDatos{
+        width: 250px;
+    }
+}
