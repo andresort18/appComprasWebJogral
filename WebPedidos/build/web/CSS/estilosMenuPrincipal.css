@@ -8,7 +8,7 @@ body,html{
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    /*background-color: #F0F0F0;*/  
+   
 }
 
 .menuPrincipal{
@@ -88,15 +88,10 @@ footer {
         
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1366px){
+    @media only screen and (min-width: 720px) and (max-width: 1280px){
         .login{
             width: 600px;
-            height: 650px;
-        }
-        
-        .logoIndex{
-           width: 250px;
-           height: 250px;
+            height: 550px;
         }
         
         .labelTitulo{
@@ -113,10 +108,8 @@ footer {
             font-size: 26px;
         }
         
-        .menuInterno{
-            padding-top: 30px;
-            align-items: center;
-            justify-content: center;
+         .menuInterno{
+            padding-top: 15px;
         } 
         
     }

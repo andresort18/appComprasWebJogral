@@ -149,26 +149,56 @@ body,html{
         width: 350px;    
     }
     
-    .MyDialog.ui-dialog .ui-dialog-content{
+    /*.MyDialog.ui-dialog .ui-dialog-content{
          width: 28% !important;
     }
+    */
     
     .encaOrd{
         display: flex;
         flex-direction: column;
         height: auto;
+    }
+    
+    .MyDialog.ui-dialog .ui-dialog-content{
+        max-width:340px !important;
+        max-height: 580px !important;
     }   
 }
 
-/* Responsive para Tablets */
-@media only screen and (min-width: 768px) and (max-width: 1366px){
+/* Responsive para Tablets y pantallas HD */
+@media only screen and (min-width: 768px) and (max-width: 1367px){
     .tablaMain{
-        width: 740px;
+        width: 1100px;
+        max-height: 480px;
+        overflow: scroll;
+    }
+     
+    .MyDialog.ui-dialog .ui-dialog-content{
+        width: 1310px !important;
+        height: 520px !important;
+    }   
+    .encaOrd{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+}
+
+/* Responsive para ipad mini */
+@media only screen and (min-width: 768px) and (max-width:1024px){
+    .tablaMain{
+        width: 720px;
+        max-height: 950px;
     }
     
     .MyDialog.ui-dialog .ui-dialog-content{
-        width: 60% !important;
-    }   
+
+        max-width: 700px !important;
+        height: 700px !important;
+        overflow: scroll !important;
+    }
+    
     .encaOrd{
         display: flex;
         flex-direction: column;
@@ -176,17 +206,17 @@ body,html{
     }
 }
 
-
 /* Responsive para Tablets horizontales */
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: horizontal){
+@media (min-width: 768px) and (max-width: 1367px) and (orientation:horizontal){
     .tablaMain{
-        width: 650px;
+        width: 500px;
         height: 200px;
+        background-color: red;
     }
 }
 
 @media (min-width: 1025px) and (max-width: 1280px) {
   .MyDialog.ui-dialog .ui-dialog-content{
-        width: 90% !important;
+        max-width:1100px !important;
     }   
 }
